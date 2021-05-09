@@ -1,0 +1,51 @@
+﻿@model Razorpay.Integration.Models.MerchantOrder
+
+<button id="RzP_btn" hidden>Pay</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "@Html.DisplayFor(model => model.RazorpayKey)", // Enter the Key ID generated from the Dashboard
+    "amount": "@Html.DisplayFor(model => model.Amount)", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "@Html.DisplayFor(model => model.Currency)",
+    "name": "@Html.DisplayFor(model => model.Name)",
+    "description": "@Html.DisplayFor(model => model.Description)",
+    "image": "https://avatars.githubusercontent.com/u/65504583?v=4", // You can give your logo url
+    "order_id": "@Html.DisplayFor(model => model.OrderId)",
+    "handler": function (response){
+        // After payment successfully made response will come here
+        // Set the data in hidden form
+        document.getElementById('rzp_paymentid').value = response.razorpay_payment_id;
+        document.getElementById('rzp_orderid').value = response.razorpay_order_id;
+        // // Let's submit the form automatically
+        document.getElementById('rzp-paymentresponse').click();
+    },
+    "prefill": {
+        "name": "@Html.DisplayFor(model => model.Name)",
+        "email": "@Html.DisplayFor(model => model.Email)",
+        "contact": "@Html.DisplayFor(model => model.PhoneNumber)"
+    },
+    "notes": {
+        "address": "@Html.DisplayFor(model => model.Address)"
+    },
+    "theme": {
+        "color": "#F37254"
+    }
+};
+    var rzp1 = new Razorpay(options);
+
+    //<!-- onload function -->
+    window.onload = function(){
+        document.getElementById('RzP_btn').click();
+    };
+
+    document.getElementById('RzP_btn').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+<form action="CompleteOrderProcess" method="post" asp-antiforgery="true">
+    <input type="hidden" id="rzp_paymentid" name="rzp_paymentid" />
+    <input type="hidden" id="rzp_orderid"  name="rzp_orderid"/>
+    <button type="submit" id="rzp-paymentresponse" class="btn btn-primary" hidden>Submit</button>
+</form>

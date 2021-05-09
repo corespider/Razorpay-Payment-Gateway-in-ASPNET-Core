@@ -1,0 +1,68 @@
+﻿@model Razorpay.Integration.Models.PaymentRequest
+@{
+    ViewData["Title"] = "Payment Page";
+    
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <form class="well form-horizontal" asp-action="ProcessRequestOrder" method="post" id="contact_form">
+
+        <center><h2><b>Razorpay Payment Gateway Integration</b></h2></center>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Customer Name</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input placeholder="Name" class="form-control" type="text" asp-for="Name" autocomplete="off" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">E-Mail</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope" style="font-size:11px"></i></span>
+                    <input placeholder="E-Mail Address" class="form-control" type="text" asp-for="Email" autocomplete="off" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Phone Number</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    <input placeholder="Phone" class="form-control" type="text" asp-for="PhoneNumber" autocomplete="off" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Address</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-address-book-o" style="font-size:11px"></i></span>
+                    <input placeholder="Address" class="form-control" type="text" asp-for="Address" autocomplete="off" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Amount (INR)</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-inr" style="font-size:19px"></i></span>
+                    <input placeholder="Amount (INR)" class="form-control" type="text" asp-for="Amount" autocomplete="off" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4" style="text-align:center;">
+                <button type="submit" class="btn btn-warning">SUBMIT <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+        </div>
+    </form>
+
+
+
+   
